@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Podomoro timer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Pomopal</h1>
+
+        <!-- Navigation -->
+        <div class="nav">
+            <button class="active" id="pomodoroBtn">Pomodoro</button>
+            <button id="shortBreakBtn">Short Break</button>
+            <button id="longBreakBtn">Long Break</button>
+        </div>
+
+        <!-- Timer Display -->
+        <div class="timer" id="timer">25:00</div>
+
+        <!-- Timer Controls (Prev, Start/Pause, Next) -->
+        <div class="timer-controls">
+            <button id="prevBtn">⏮</button>
+            <button id="startBtn">START</button>
+            <button id="nextBtn">⏭</button>
+        </div>
+
+        <div class="status" id="statusText">Time to focus!</div>
+
+        <!-- Tasks Section -->
+        <div class="tasks">
+            <h3>
+                Tasks
+                <span class="menu-btn" id="menuBtn">⋮</span>
+            </h3>
+
+            <!-- Dropdown menu -->
+            <div class="dropdown-menu" id="dropdownMenu">
+                <div class="menu-item" onclick="clearFinishedTasks()">Clear finished tasks</div>
+                <div class="menu-item" onclick="clearAllTasks()">Clear all tasks</div>
+            </div>
+
+            <ul id="taskList"></ul>
+
+            <div class="add-task">
+                <input type="text" id="taskInput" placeholder="Add Task">
+                <button id="addTaskBtn">＋</button>
+            </div>
+        </div>
+
+        <!-- Settings Button -->
+        <div style="margin-top: 20px;">
+            <button id="settingsBtn">⚙ Settings</button>
+        </div>
+
+        <!-- Settings Popup -->
+        <div id="settingsPopup">
+            <h3>Set Custom Time (minutes)</h3>
+            <div class="setting-item">
+                <label>Pomodoro: </label>
+                <input type="number" id="pomodoroInput" min="1" value="25">
+            </div>
+            <div class="setting-item">
+                <label>Short Break: </label>
+                <input type="number" id="shortBreakInput" min="1" value="5">
+            </div>
+            <div class="setting-item">
+                <label>Long Break: </label>
+                <input type="number" id="longBreakInput" min="1" value="15">
+            </div>
+            <div class="settings-buttons">
+                <button id="saveSettingsBtn">Save</button>
+                <button id="closeSettingsBtn">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

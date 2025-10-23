@@ -1,0 +1,180 @@
+/* Page background only */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Playful gradient background */
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);
+    background-size: 400% 400%;
+    animation: playfulBackground 15s ease infinite;
+}
+
+/* Smooth animated gradient */
+@keyframes playfulBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    background: #fff; /* keeps it white */
+    width: 400px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    position: relative;
+    transition: background-color 0.5s;
+}
+
+h1 { margin-bottom: 20px; }
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.nav button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    color: #fff;
+}
+
+.nav button.active { opacity: 0.9; }
+
+.timer {
+    font-size: 48px;
+    margin: 20px 0;
+    color: #fff;
+}
+
+#startBtn {
+    padding: 10px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.status { margin-top: 10px; font-weight: bold; color: #fff; }
+
+.tasks {
+    margin-top: 30px;
+    text-align: left;
+    position: relative;
+}
+
+.tasks h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+.menu-btn {
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    width: 180px;
+    top: 25px;
+    right: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    z-index: 100;
+}
+
+.dropdown-menu .menu-item {
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.dropdown-menu .menu-item:hover { background-color: #f0f0f0; }
+
+.tasks ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    color: #000;
+}
+
+.tasks li {
+    background: #f0f0f0f0;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-task {
+    margin-top: 10px;
+    display: flex;
+}
+
+.add-task input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #cccccc00;
+}
+
+.add-task button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    color: #000;
+    background-color:#e0e0e0
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.timer-controls button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #0000007b;
+}
+
+/* Settings popup styles */
+#settingsPopup {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 200;
+    text-align: left;
+}
+
+#settingsPopup h3 { margin-bottom: 10px; }
+.setting-item { margin-bottom: 10px; }
+.settings-buttons { display: flex; justify-content: flex-end; gap: 10px; }
