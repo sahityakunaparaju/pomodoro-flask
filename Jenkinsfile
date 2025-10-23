@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        VENV_DIR = "${WORKSPACE}\\venv"
+        VENV_DIR = "${WORKSPACE}/venv"
         PYTHONPATH = "${WORKSPACE}"
     }
 
@@ -15,19 +15,16 @@ pipeline {
 
         stage('Setup Python') {
             steps {
-                script {
-                    // Create virtual environment if it doesn't exist
-                    if (!fileExists("${VENV_DIR}")) {
-                        bat "python -m venv ${VENV_DIR}"
-                    }
-                }
+                sh """
+                python3 -m venv ${VENV_DIR}
+                """
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                bat """
-                call ${VENV_DIR}\\Scripts\\activate
+                sh """
+                source ${VENV_DIR}/bin/activate
                 python -m pip install --upgrade pip
                 pip install -r requirements.txt
                 """
@@ -36,9 +33,9 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat """
-                call ${VENV_DIR}\\Scripts\\activate
-                pytest tests\\ --disable-warnings
+                sh """
+                source ${VENV_DIR}/bin/activate
+                pytest tests/ --disable-warnings
                 """
             }
         }
