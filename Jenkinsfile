@@ -7,13 +7,14 @@ pipeline {
     }
 
     stages {
+        // Stage 1: Checkout code from GitHub
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/sahityakunaparaju/pomodoro-flask.git'
             }
         }
 
-        // <-- Replace your old Setup Python stage with this one
+        // Stage 2: Setup Python virtual environment
         stage('Setup Python') {
             steps {
                 echo "Creating virtual environment..."
@@ -37,6 +38,7 @@ pipeline {
             }
         }
 
+        // Stage 3: Install project dependencies
         stage('Install Dependencies') {
             steps {
                 echo "Installing dependencies..."
@@ -58,6 +60,7 @@ pipeline {
             }
         }
 
+        // Stage 4: Run tests
         stage('Run Tests') {
             steps {
                 echo "Running tests..."
@@ -70,14 +73,29 @@ pipeline {
                 }
             }
         }
+
+        // Stage 5: Simulated Deploy
+        stage('Deploy') {
+            steps {
+                echo "Deploying application (simulation)..."
+                script {
+                    if (isUnix()) {
+                        sh "echo 'Deployment successful on Unix!'"
+                    } else {
+                        bat "echo Deployment successful on Windows!"
+                    }
+                }
+            }
+        }
     }
 
+    // Post actions for pipeline
     post {
         always {
             echo "CI/CD pipeline finished."
         }
         success {
-            echo "All tests passed successfully!"
+            echo "All stages completed successfully!"
         }
         failure {
             echo "Pipeline failed. Check console output."
