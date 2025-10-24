@@ -15,13 +15,12 @@ Pomopal is a fun, web-based Pomodoro timer that helps you stay focused, track ta
 - 🎛️ **Interactive Controls** – Start/Pause, Prev/Next navigation
 - 🔔 **Audio Alerts** – Beep sound when timer finishes
 
-## 🎨 Demo / Screenshots
-
-Add a screenshot or GIF of your app here.
 
 ## 🚀 Getting Started
 
+
 1️⃣ **Clone the repository**
+
 ```bash
 git clone https://github.com/<your-username>/pomopal.git
 cd pomopal-flask
