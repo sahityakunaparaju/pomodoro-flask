@@ -19,40 +19,8 @@ Pomopal is a fun, web-based Pomodoro timer that helps you stay focused, track ta
 - 🐳 **Docker Support** – Run the app in a container  
 - 🛠️ **Jenkins CI/CD** – Automate build and deployment
 
----
 
-## 🚀 Getting Started
-
-1. **Clone the repository**  
-```bash
-git clone https://github.com/<your-username>/pomopal.git
-cd pomopal-flask
-Install dependencies
-
-bash
-Copy code
-pip install flask
-Run the app
-
-bash
-Copy code
-python app.py
-Open in browser
-Visit: http://127.0.0.1:5000
-
-Run with Docker (optional)
-
-bash
-Copy code
-docker build -t pomopal .
-docker run -p 5000:5000 pomopal
-Jenkins CI/CD
-
-The included Jenkinsfile automates testing, building, and deploying your Flask app
-
-Configure Jenkins with your GitHub repo to run pipelines automatically
-
-⚡ How to Use
+## ⚡ How to Use
 Switch between Pomodoro, Short Break, and Long Break modes
 
 Click START/PAUSE to control the timer
@@ -69,7 +37,7 @@ Clear finished/all tasks via dropdown menu
 
 Customize durations in Settings (⚙)
 
-💻 Technologies
+## 💻 Technologies
 Backend: Python Flask
 
 Frontend: HTML, CSS, JavaScript
@@ -82,7 +50,7 @@ Containerization: Docker
 
 Static Assets: Background image, CSS, JS
 
-🌱 Future Improvements
+## 🌱 Future Improvements
 Persist tasks and timer progress using localStorage or database
 
 Add mobile-friendly responsive UI
