@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.11-slim'  // Python pre-installed
-            args '-u root:root'       // run as root inside container
-        }
-    }
+    agent any
 
     environment {
         VENV = "${WORKSPACE}/venv"
@@ -20,32 +15,33 @@ pipeline {
 
         stage('Setup Python') {
             steps {
-                echo "Creating virtual environment..."
-                sh """
+                echo "Installing Python and creating virtual environment..."
+                sh '''
+                apt-get update
+                apt-get install -y python3 python3-venv python3-pip
                 python3 -m venv $VENV
-                . $VENV/bin/activate
-                """
+                '''
             }
         }
 
         stage('Install Dependencies') {
             steps {
                 echo "Installing dependencies..."
-                sh """
+                sh '''
                 . $VENV/bin/activate
                 pip install --upgrade pip
                 pip install -r requirements.txt
-                """
+                '''
             }
         }
 
         stage('Run Tests') {
             steps {
                 echo "Running tests..."
-                sh """
+                sh '''
                 . $VENV/bin/activate
                 pytest tests/ --disable-warnings || echo "No tests found or some tests failed"
-                """
+                '''
             }
         }
 
