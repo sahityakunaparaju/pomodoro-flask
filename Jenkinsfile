@@ -15,45 +15,49 @@ pipeline {
 
         stage('Setup Python') {
             steps {
-                echo "Installing Python and creating virtual environment..."
-                sh '''
-                apt-get update
-                apt-get install -y python3 python3-venv python3-pip
-                python3 -m venv $VENV
-                '''
+                echo "Creating virtual environment..."
+                // Windows uses 'bat', Linux uses 'sh'
+                script {
+                    if (isUnix()) {
+                        sh "python3 -m venv $VENV"
+                    } else {
+                        bat "python -m venv %VENV%"
+                    }
+                }
             }
         }
 
         stage('Install Dependencies') {
             steps {
                 echo "Installing dependencies..."
-                sh '''
-                . $VENV/bin/activate
-                pip install --upgrade pip
-                pip install -r requirements.txt
-                '''
+                script {
+                    if (isUnix()) {
+                        sh """
+                        . $VENV/bin/activate
+                        pip install --upgrade pip
+                        pip install -r requirements.txt
+                        """
+                    } else {
+                        bat """
+                        call %VENV%\\Scripts\\activate
+                        python -m pip install --upgrade pip
+                        pip install -r requirements.txt
+                        """
+                    }
+                }
             }
         }
 
         stage('Run Tests') {
             steps {
                 echo "Running tests..."
-                sh '''
-                . $VENV/bin/activate
-                pytest tests/ --disable-warnings || echo "No tests found or some tests failed"
-                '''
-            }
-        }
-
-        stage('Build') {
-            steps {
-                echo "Build stage: Flask app ready"
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo "Deploy stage (optional)"
+                script {
+                    if (isUnix()) {
+                        sh ". $VENV/bin/activate && pytest tests/ --disable-warnings || echo 'Tests failed or none found'"
+                    } else {
+                        bat "call %VENV%\\Scripts\\activate && pytest tests\\ --disable-warnings"
+                    }
+                }
             }
         }
     }
