@@ -13,15 +13,25 @@ pipeline {
             }
         }
 
+        // <-- Replace your old Setup Python stage with this one
         stage('Setup Python') {
             steps {
                 echo "Creating virtual environment..."
-                // Windows uses 'bat', Linux uses 'sh'
                 script {
                     if (isUnix()) {
-                        sh "python3 -m venv $VENV"
+                        sh '''
+                        if ! command -v python3 &> /dev/null; then
+                            echo "Python3 not found, trying python"
+                            PY_CMD=python
+                        else
+                            PY_CMD=python3
+                        fi
+                        $PY_CMD -m venv $VENV
+                        '''
                     } else {
-                        bat "python -m venv %VENV%"
+                        bat """
+                        python -m venv %VENV%
+                        """
                     }
                 }
             }
