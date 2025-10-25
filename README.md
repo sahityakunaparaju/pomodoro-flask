@@ -1,4 +1,4 @@
-# Pomopal 🕑 – Interactive Pomodoro Timer
+# Pomopal 🕑 – A Flask-Based Pomodoro Timer+TODO with CI/CD Integration using Jenkins and Docker
 
 Pomopal is a fun, web-based Pomodoro timer that helps you stay focused, track tasks, and take regular breaks using the Pomodoro technique. Built with **Flask, HTML, CSS, and JavaScript**, it features dynamic themes, task management, customizable work/break intervals, and demonstrates **CI/CD with Jenkins** and **containerization with Docker**.
 
